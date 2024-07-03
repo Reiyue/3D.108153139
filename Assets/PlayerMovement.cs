@@ -8,12 +8,17 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed;
     public float jumpForce;
     public float jumpCooldown;
+    public float groundDrag;
 
     [Header("KeyBind")]
     public KeyCode jumpKey = KeyCode.Space;
 
     [Header("Basic")]
-    public Transform PlayerCamera;   
+    public Transform PlayerCamera;
+    [Header("Ground")]
+    public float playerHeight;       
+    public LayerMask whatIsGround;   
+    public bool grounded;
 
     private float horizontalInput;   
     private float verticalInput;
@@ -33,6 +38,13 @@ public class PlayerMovement : MonoBehaviour
     {
         MyInput();
         SpeedControl();
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
+        Debug.DrawRay(transform.position, new Vector3(0, -(playerHeight * 0.5f + 0.3f), 0), Color.red);
+        
+        if (grounded)
+            rbFirstPerson.drag = groundDrag;
+        else
+            rbFirstPerson.drag = 0;
     }
     private void FixedUpdate()
     {
@@ -42,7 +54,8 @@ public class PlayerMovement : MonoBehaviour
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
-        if (Input.GetKey(jumpKey) && readyToJump)
+
+        if (Input.GetKey(jumpKey) && readyToJump && grounded)
         {
             readyToJump = false;
             Jump();
@@ -53,7 +66,8 @@ public class PlayerMovement : MonoBehaviour
     private void MovePlayer()
     {  
         moveDirection = PlayerCamera.forward * verticalInput + PlayerCamera.right * horizontalInput;
-        rbFirstPerson.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+        if (grounded)
+            rbFirstPerson.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
     }
     private void SpeedControl()
     {
