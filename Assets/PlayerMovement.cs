@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Move")]
     public float moveSpeed;
     public float jumpForce;
+    public float jumpCooldown;
 
     [Header("KeyBind")]
     public KeyCode jumpKey = KeyCode.Space;
@@ -15,7 +16,8 @@ public class PlayerMovement : MonoBehaviour
     public Transform PlayerCamera;   
 
     private float horizontalInput;   
-    private float verticalInput;     
+    private float verticalInput;
+    private bool readyToJump;
 
     private Vector3 moveDirection;  
     private Rigidbody rbFirstPerson; 
@@ -23,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rbFirstPerson = GetComponent<Rigidbody>();
         rbFirstPerson.freezeRotation = true;
+        readyToJump = true;
     }
 
     // Update is called once per frame
@@ -39,9 +42,11 @@ public class PlayerMovement : MonoBehaviour
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
-        if (Input.GetKey(jumpKey) == true)
+        if (Input.GetKey(jumpKey) && readyToJump)
         {
-            Jump(); 
+            readyToJump = false;
+            Jump();
+            Invoke(nameof(ResetJump), jumpCooldown);
         }
     }
 
@@ -63,6 +68,10 @@ public class PlayerMovement : MonoBehaviour
     {
         rbFirstPerson.velocity = new Vector3(rbFirstPerson.velocity.x, 0f, rbFirstPerson.velocity.z);
         rbFirstPerson.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+    }
+    private void ResetJump()
+    {
+        readyToJump = true;
     }
 }
 
