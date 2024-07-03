@@ -15,13 +15,16 @@ public class Shooting : MonoBehaviour
     [Header("Gun")]
     public int magazineSize;   
     public int bulletsLeft;    
-    public float reloadTime;    
+    public float reloadTime;
+    public float recoilForce;
 
     bool reloading;             
 
     [Header("UI")]
     public TextMeshProUGUI ammunitionDisplay;
     public TextMeshProUGUI reloadingDisplay;
+    //bool allowInvoke = true;
+    public Animator animatorObject;
 
     private void Start()
     {
@@ -67,9 +70,12 @@ public class Shooting : MonoBehaviour
 
         currentBullet.GetComponent<Rigidbody>().AddForce(currentBullet.transform.forward * 20, ForceMode.Impulse);
 
-        bulletsLeft--; 
+        bulletsLeft--;
 
-        ShowAmmoDisplay();                 
+        this.GetComponent<Rigidbody>().AddForce(-shootingDirection.normalized * recoilForce, ForceMode.Impulse);
+
+        ShowAmmoDisplay();
+        animatorObject.SetTrigger("Fire");
     }
 
     private void Reload()

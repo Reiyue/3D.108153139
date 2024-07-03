@@ -433,7 +433,7 @@ MonoBehaviour:
   moveSpeed: 7
   jumpForce: 4.75
   jumpCooldown: 0.1
-  groundDrag: 0.01
+  groundDrag: 3.87
   airMultiplier: 1.92
   jumpKey: 32
   PlayerCamera: {fileID: 963194228}
@@ -452,6 +452,8 @@ GameObject:
   m_Component:
   - component: {fileID: 676517322}
   - component: {fileID: 676517323}
+  - component: {fileID: 676517324}
+  - component: {fileID: 676517325}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -468,7 +470,7 @@ Transform:
   m_GameObject: {fileID: 676517321}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.235, y: -0.501, z: 0.71}
+  m_LocalPosition: {x: -0.235, y: -0.501, z: 1.966}
   m_LocalScale: {x: 0.33532, y: 0.33532, z: 0.7108784}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -493,8 +495,58 @@ MonoBehaviour:
   magazineSize: 10
   bulletsLeft: 10
   reloadTime: 1
+  recoilForce: 1.59
   ammunitionDisplay: {fileID: 1801200505}
   reloadingDisplay: {fileID: 10006623}
+  animatorObject: {fileID: 676517325}
+--- !u!54 &676517324
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676517321}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!95 &676517325
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676517321}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 42072bad625c3954a8756d6c46a94b65, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &677276838
 GameObject:
   m_ObjectHideFlags: 0
@@ -523,7 +575,7 @@ Transform:
   m_GameObject: {fileID: 677276838}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1.352}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1058,7 +1110,7 @@ GameObject:
   - component: {fileID: 1670167085}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
