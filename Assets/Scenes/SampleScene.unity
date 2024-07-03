@@ -222,6 +222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2.77
+  jumpForce: 0.87
   jumpKey: 32
   PlayerCamera: {fileID: 963194228}
 --- !u!1 &697138184

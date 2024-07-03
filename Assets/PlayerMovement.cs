@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Move")]
     public float moveSpeed;
+    public float jumpForce;
 
     [Header("KeyBind")]
     public KeyCode jumpKey = KeyCode.Space;
@@ -38,6 +39,10 @@ public class PlayerMovement : MonoBehaviour
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
+        if (Input.GetKey(jumpKey) == true)
+        {
+            Jump(); 
+        }
     }
 
     private void MovePlayer()
@@ -53,6 +58,11 @@ public class PlayerMovement : MonoBehaviour
             Vector3 limitedVel = flatVel.normalized * moveSpeed;
             rbFirstPerson.velocity = new Vector3(limitedVel.x, rbFirstPerson.velocity.y, limitedVel.z);
         }
+    }
+    private void Jump()
+    {
+        rbFirstPerson.velocity = new Vector3(rbFirstPerson.velocity.x, 0f, rbFirstPerson.velocity.z);
+        rbFirstPerson.AddForce(transform.up * jumpForce, ForceMode.Impulse);
     }
 }
 
