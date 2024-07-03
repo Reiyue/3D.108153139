@@ -6,6 +6,12 @@ public class Shooting : MonoBehaviour
 {
     [Header("Sample")]
     public Camera PlayerCamera;
+    public Transform attackPoint;
+
+    [Header("Bullet")]
+    public float pushForce = 50.0f;
+    public GameObject bullet;
+
 
     private void Update()
     {
@@ -21,7 +27,12 @@ public class Shooting : MonoBehaviour
             else
                 targetPoint = ray.GetPoint(75);  
 
-            Debug.DrawRay(ray.origin, targetPoint - ray.origin, Color.red, 10); 
+            Debug.DrawRay(ray.origin, targetPoint - ray.origin, Color.red, 10);
+            Vector3 directionWithoutSpread = targetPoint - attackPoint.position; 
+            GameObject currentBullet = Instantiate(bullet, attackPoint.position, Quaternion.identity); 
+            currentBullet.transform.forward = directionWithoutSpread.normalized; 
+
+            currentBullet.GetComponent<Rigidbody>().AddForce(directionWithoutSpread.normalized * pushForce, ForceMode.Impulse);
         }
     }
 }

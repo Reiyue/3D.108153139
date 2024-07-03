@@ -354,6 +354,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerCamera: {fileID: 963194227}
+  attackPoint: {fileID: 710767037}
+  pushForce: 50
+  bullet: {fileID: 146174302531846406, guid: 0162687fd62e066488db14883e4fdd0e, type: 3}
 --- !u!1 &677276838
 GameObject:
   m_ObjectHideFlags: 0
