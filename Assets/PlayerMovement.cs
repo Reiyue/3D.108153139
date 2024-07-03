@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         MyInput();
+        SpeedControl();
     }
     private void FixedUpdate()
     {
@@ -43,6 +44,15 @@ public class PlayerMovement : MonoBehaviour
     {  
         moveDirection = PlayerCamera.forward * verticalInput + PlayerCamera.right * horizontalInput;
         rbFirstPerson.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+    }
+    private void SpeedControl()
+    {
+        Vector3 flatVel = new Vector3(rbFirstPerson.velocity.x, 0f, rbFirstPerson.velocity.z);
+        if (flatVel.magnitude > moveSpeed)
+        {
+            Vector3 limitedVel = flatVel.normalized * moveSpeed;
+            rbFirstPerson.velocity = new Vector3(limitedVel.x, rbFirstPerson.velocity.y, limitedVel.z);
+        }
     }
 }
 
