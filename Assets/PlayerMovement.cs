@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce;
     public float jumpCooldown;
     public float groundDrag;
+    public float airMultiplier;
 
     [Header("KeyBind")]
     public KeyCode jumpKey = KeyCode.Space;
@@ -67,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
     {  
         moveDirection = PlayerCamera.forward * verticalInput + PlayerCamera.right * horizontalInput;
         if (grounded)
-            rbFirstPerson.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+            rbFirstPerson.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
     }
     private void SpeedControl()
     {

@@ -225,6 +225,7 @@ MonoBehaviour:
   jumpForce: 4.75
   jumpCooldown: 0.1
   groundDrag: 0.01
+  airMultiplier: 1.92
   jumpKey: 32
   PlayerCamera: {fileID: 963194228}
   playerHeight: 5.07
