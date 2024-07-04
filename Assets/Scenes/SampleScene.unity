@@ -1007,6 +1007,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1809960852}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1 &431127537
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 431127539}
+  - component: {fileID: 431127538}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &431127538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 431127537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a7a3b380d7d58d41864656b5f7a5c6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeBarImage: {fileID: 977086028}
+--- !u!4 &431127539
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 431127537}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 650.8268, y: 239.37927, z: 0.55983067}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &479024629
 GameObject:
   m_ObjectHideFlags: 0
@@ -1620,6 +1665,7 @@ GameObject:
   - component: {fileID: 643633189}
   - component: {fileID: 643633192}
   - component: {fileID: 643633193}
+  - component: {fileID: 643633194}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1733,6 +1779,21 @@ MonoBehaviour:
   weaponObjects:
   - {fileID: 676517321}
   - {fileID: 875920978}
+--- !u!114 &643633194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 643633188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 249ca398571e9484f8f1a481ec1fcd64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxLifeValue: 100
+  lifeHpChangeUnit: 1
+  gameManager: {fileID: 431127538}
 --- !u!1 &676517321
 GameObject:
   m_ObjectHideFlags: 0
@@ -4389,3 +4450,4 @@ SceneRoots:
   - {fileID: 1992368632}
   - {fileID: 1809960852}
   - {fileID: 2014520478}
+  - {fileID: 431127539}
