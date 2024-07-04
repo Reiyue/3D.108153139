@@ -8,7 +8,18 @@ public class GameManager : MonoBehaviour
     [Header("UI")]
     public Image lifeBarImage;
 
-    public void UpdateLifeBar(float _value)
+    void OnEnable()
+    {
+        PlayerController.onHpChange += UpdateLifeBar;   
+
+    }
+
+    void OnDisable()
+    {
+        PlayerController.onHpChange -= UpdateLifeBar;  
+    }
+
+    private void UpdateLifeBar(float _value)
     {
         lifeBarImage.fillAmount = _value;
     }

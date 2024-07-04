@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,12 +7,11 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Basic")]
     public float maxLifeValue;  
-    public float lifeHpChangeUnit;  
-
-    [Header("UI")]
-    public GameManager gameManager;
+    public float lifeHpChangeUnit;
 
     float lifeValue;
+
+    public static Action<float> onHpChange;
 
     void Start()
     {
@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             lifeValue -= lifeHpChangeUnit;
-            gameManager.UpdateLifeBar(lifeValue / maxLifeValue); 
+            onHpChange?.Invoke(lifeValue / maxLifeValue);
         }
     }
 }

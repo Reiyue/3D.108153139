@@ -1759,7 +1759,7 @@ MonoBehaviour:
   airMultiplier: 1.92
   jumpKey: 32
   PlayerCamera: {fileID: 963194228}
-  playerHeight: 5.07
+  playerHeight: 3.73
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8
@@ -1793,7 +1793,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxLifeValue: 100
   lifeHpChangeUnit: 1
-  gameManager: {fileID: 431127538}
 --- !u!1 &676517321
 GameObject:
   m_ObjectHideFlags: 0
