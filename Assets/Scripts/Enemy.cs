@@ -1,19 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
     [Header("Track")]
     public string targetName = "Player";                    
-    public float minimunTraceDistance = 5.0f;            
+    public float minimunTraceDistance = 5.0f;
 
-    GameObject targetObject = null;                         
-    bool enableMove = false;                                
+    NavMeshAgent navMeshAgent;
+    GameObject targetObject = null;                                                        
 
     void Start()
     {
-        targetObject = GameObject.FindGameObjectWithTag(targetName);  
+        targetObject = GameObject.FindGameObjectWithTag(targetName); 
+        navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
     void Update()
@@ -21,16 +23,14 @@ public class Enemy : MonoBehaviour
       
         float distance = Vector3.Distance(transform.position, targetObject.transform.position);
 
-        if (distance >= minimunTraceDistance)
-            enableMove = false;
+        if (distance <= minimunTraceDistance)
+            navMeshAgent.enabled = true;
         else
-            enableMove = true;
+            navMeshAgent.enabled = false;
     }
 
     void FixedUpdate()
     {
-  
-        if (enableMove)
-            transform.position = Vector3.Lerp(transform.position, targetObject.transform.position, 0.01f); 
+       navMeshAgent.SetDestination(targetObject.transform.position);
     }
 }
